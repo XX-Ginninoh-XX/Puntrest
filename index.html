@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes Galore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Dad Jokes Galore!</h1>
+
+    <div id="dadJokes"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dadJokesContainer = document.getElementById('dadJokes');
+
+            // Fetch dad jokes from a URL
+            fetch('https://example.com/dad-jokes.txt')
+                .then(response => response.text())
+                .then(data => {
+                    // Split the text into an array of jokes (assuming each line is a joke)
+                    var dadJokes = data.split('\n');
+
+                    // Display dad jokes
+                    dadJokes.forEach(function (joke) {
+                        var jokeParagraph = document.createElement('p');
+                        jokeParagraph.textContent = joke;
+                        dadJokesContainer.appendChild(jokeParagraph);
+                    });
+                })
+                .catch(error => console.error('Error fetching dad jokes:', error));
+        });
+    </script>
+
+</body>
+</html>
